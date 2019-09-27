@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load staticfiles %} {% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+    <title>Notícias</title>
+  </head>
+
+  <body>
+    <div class="container pt-20">
+      <div class="text-center">
+        <h1 class="mb-50">Notícias da Semana</h1>
+      </div>
+      {% for noticia in news %}
+      <div class="mb-40 shadow mx-10 px-20 py-10 bg-white text-center">
+        <h2>{{ noticia.title }}</h2>
+        <div class="flex justify-center">
+          <img class="max-w-80" src="static/img/{{ noticia.img1 }}.jpg" alt="Foto notícia" />
+        </div>
+        <p class="max-w-80 mx-auto text-center">
+          {{ noticia.P1 }} <a href="{% url 'new' noticia.id%}">Leia mais...</a>
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

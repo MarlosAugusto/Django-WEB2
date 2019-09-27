@@ -1,0 +1,59 @@
+f<!DOCTYPE html>
+{% load staticfiles %} {% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+    <title>Noticia {{ new.title }}</title>
+  </head>
+  <body>
+    <div class="container pt-20">
+      <div class="mb-10 shadow mx-10 px-20 py-10 bg-white">
+        <div class="text-center">
+          <h2>{{ new.title }}</h2>
+        </div>
+        <div class="flex justify-center">
+          <img
+            class="max-w-90"
+            src="../static/img/{{ new.img1 }}.jpg"
+            alt="Foto notícia"
+          />
+        </div>
+        <div class="max-w-80 mx-auto">
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{{ new.P1 }}</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{{ new.P2 }}</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{{ new.P3 }}</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{{ new.P4 }}</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{{ new.P5 }}</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{{ new.P6 }}</p>
+        </div>
+
+        <div class="flex justify-center mb-20">
+          <img
+            class="max-w-90"
+            src="../static/img/{{ new.img2 }}.jpg"
+            alt="Foto notícia"
+          />
+        </div>
+      </div>
+      <div class="row flex mb-40 shadow mx-10 px-20 py-10 bg-white comments pb-50">
+        <div class="w50 my-auto">
+          <h2 class="text-center">Comentários</h2>
+          {% for comment in comments %}
+          <p class="comment rounded mx-auto">{{ comment }}</p>
+          {% endfor %}
+          {% if not comments %} 
+          <p class="text-center">Não há comentários até o momento</p>
+          {% endif %}
+        </div>
+        <div class="w50 flex new-comment">
+          <form class="mx-auto my-auto" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
